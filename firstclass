@@ -1,0 +1,926 @@
+login as: ec2-user
+Authenticating with public key "imported-openssh-key"
+Last login: Mon Sep  9 04:46:26 2019 from 182.69.109.183
+[ec2-user@ip-172-31-45-21 ~]$ sudo su -
+Last login: Mon Sep  9 04:46:29 UTC 2019 on pts/0
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]# git
+-bash: git: command not found
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]# wget https://www.kernel.org/pub/software/scm/git/git-2.21.0.tar.gz
+--2019-09-09 09:41:44--  https://www.kernel.org/pub/software/scm/git/git-2.21.0.tar.gz
+Resolving www.kernel.org (www.kernel.org)... 147.75.46.191, 2604:1380:4080:c00::1
+Connecting to www.kernel.org (www.kernel.org)|147.75.46.191|:443... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.21.0.tar.gz [following]
+--2019-09-09 09:41:45--  https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.21.0.tar.gz
+Resolving mirrors.edge.kernel.org (mirrors.edge.kernel.org)... 147.75.95.133, 2604:1380:3000:1500::1
+Connecting to mirrors.edge.kernel.org (mirrors.edge.kernel.org)|147.75.95.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 8289375 (7.9M) [application/x-gzip]
+Saving to: ‘git-2.21.0.tar.gz’
+
+100%[===========================================================================================================================================================>] 8,289,375    767KB/s   in 9.2s
+
+2019-09-09 09:41:56 (878 KB/s) - ‘git-2.21.0.tar.gz’ saved [8289375/8289375]
+
+[root@ip-172-31-45-21 ~]# tar xzf git-2.21.0.tar.gz
+[root@ip-172-31-45-21 ~]# cd git-2.21.0
+[root@ip-172-31-45-21 git-2.21.0]# make prefix=/usr/local/git all
+GIT_VERSION = 2.21.0
+    * new build flags
+    CC fuzz-commit-graph.o
+/bin/sh: cc: command not found
+make: *** [fuzz-commit-graph.o] Error 127
+[root@ip-172-31-45-21 git-2.21.0]# make prefix=/usr/local/git install
+    CC fuzz-commit-graph.o
+/bin/sh: cc: command not found
+make: *** [fuzz-commit-graph.o] Error 127
+[root@ip-172-31-45-21 git-2.21.0]# yum list git*
+Loaded plugins: amazon-id, rhui-lb, search-disabled-repos
+Repodata is over 2 weeks old. Install yum-cron? Or run: yum makecache fast
+Error: No matching Packages to list
+[root@ip-172-31-45-21 git-2.21.0]#
+[root@ip-172-31-45-21 git-2.21.0]#
+[root@ip-172-31-45-21 git-2.21.0]# yum repolist
+Loaded plugins: amazon-id, rhui-lb, search-disabled-repos
+Repodata is over 2 weeks old. Install yum-cron? Or run: yum makecache fast
+repo id                                                                                 repo name                                                                                              status
+!epel/x86_64                                                                            Extra Packages for Enterprise Linux 7 - x86_64                                                         13,328
+!jenkins                                                                                Jenkins-stable                                                                                             90
+!rhui-REGION-client-config-server-7/x86_64                                              Red Hat Update Infrastructure 2.0 Client Configuration Server 7                                             3
+!rhui-REGION-rhel-server-releases/7Server/x86_64                                        Red Hat Enterprise Linux Server 7 (RPMs)                                                               24,415
+!rhui-REGION-rhel-server-rh-common/7Server/x86_64                                       Red Hat Enterprise Linux Server 7 RH Common (RPMs)                                                        238
+repolist: 38,074
+[root@ip-172-31-45-21 git-2.21.0]#
+[root@ip-172-31-45-21 git-2.21.0]#
+[root@ip-172-31-45-21 git-2.21.0]# yum install git
+Loaded plugins: amazon-id, rhui-lb, search-disabled-repos
+epel/x86_64/metalink                                                                                                                                                          | 5.7 kB  00:00:00
+epel                                                                                                                                                                          | 5.3 kB  00:00:00
+http://repos.del.extreme-ix.org/epel/7/x86_64/repodata/repomd.xml: [Errno -1] repomd.xml does not match metalink for epel
+Trying other mirror.
+epel                                                                                                                                                                          | 5.3 kB  00:00:00
+http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel/7/x86_64/repodata/repomd.xml: [Errno -1] repomd.xml does not match metalink for epel
+Trying other mirror.
+epel                                                                                                                                                                          | 5.3 kB  00:00:00
+jenkins                                                                                                                                                                       | 2.9 kB  00:00:00
+rhui-REGION-client-config-server-7                                                                                                                                            | 2.9 kB  00:00:00
+rhui-REGION-rhel-server-releases                                                                                                                                              | 3.5 kB  00:00:00
+rhui-REGION-rhel-server-rh-common                                                                                                                                             | 3.8 kB  00:00:00
+epel/x86_64/updateinfo         FAILED
+http://repos.del.extreme-ix.org/epel/7/x86_64/repodata/27dbfb501a405b516fdd259fe875cf90fed0458299aedd6b54f270d79c639297-updateinfo.xml.bz2: [Errno 14] HTTP Error 404 - Not Found  0 B  --:--:-- ETA
+Trying other mirror.
+To address this issue please refer to the below knowledge base article
+
+https://access.redhat.com/articles/1320623
+
+If above article doesn't help to resolve this issue please open a ticket with Red Hat Support.
+
+epel/x86_64/primary_db         FAILED
+http://repos.del.extreme-ix.org/epel/7/x86_64/repodata/c28b0548938efc1f9808e0b5ccd6c6f8b05e8e8db4f881b47ea47eb6d007d2be-primary.sqlite.bz2: [Errno 14] HTTP Error 404 - Not Found  0 B  --:--:-- ETA
+Trying other mirror.
+(1/8): rhui-REGION-rhel-server-rh-common/7Server/x86_64/updateinfo                                                                                                            |  34 kB  00:00:00
+(2/8): rhui-REGION-rhel-server-releases/7Server/x86_64/group                                                                                                                  | 773 kB  00:00:00
+(3/8): rhui-REGION-rhel-server-rh-common/7Server/x86_64/primary_db                                                                                                            | 118 kB  00:00:00
+(4/8): jenkins/primary_db                                                                                                                                                     |  29 kB  00:00:00
+(5/8): rhui-REGION-rhel-server-releases/7Server/x86_64/updateinfo                                                                                                             | 3.4 MB  00:00:00
+(6/8): epel/x86_64/updateinfo                                                                                                                                                 | 1.0 MB  00:00:00
+(7/8): rhui-REGION-rhel-server-releases/7Server/x86_64/primary_db                                                                                                             |  61 MB  00:00:02
+(8/8): epel/x86_64/primary_db                                                                                                                                                 | 6.8 MB  00:00:15
+Resolving Dependencies
+--> Running transaction check
+---> Package git.x86_64 0:1.8.3.1-20.el7 will be installed
+--> Processing Dependency: perl-Git = 1.8.3.1-20.el7 for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl >= 5.008 for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: /usr/bin/perl for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(Error) for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(Exporter) for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(File::Basename) for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(File::Copy) for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(File::Find) for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(File::Path) for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(File::Spec) for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(File::Temp) for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(File::stat) for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(Getopt::Long) for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(Git) for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(Term::ReadKey) for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(lib) for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(strict) for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(vars) for package: git-1.8.3.1-20.el7.x86_64
+--> Processing Dependency: perl(warnings) for package: git-1.8.3.1-20.el7.x86_64
+--> Running transaction check
+---> Package perl.x86_64 4:5.16.3-294.el7_6 will be installed
+--> Processing Dependency: perl-libs = 4:5.16.3-294.el7_6 for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl(Scalar::Util) >= 1.10 for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl(Socket) >= 1.3 for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl(Carp) for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl(Filter::Util::Call) for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl(Pod::Simple::Search) for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl(Pod::Simple::XHTML) for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl(Scalar::Util) for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl(Socket) for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl(Storable) for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl(Time::HiRes) for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl(Time::Local) for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl(constant) for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl(threads) for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl(threads::shared) for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl-libs for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: perl-macros for package: 4:perl-5.16.3-294.el7_6.x86_64
+--> Processing Dependency: libperl.so()(64bit) for package: 4:perl-5.16.3-294.el7_6.x86_64
+---> Package perl-Error.noarch 1:0.17020-2.el7 will be installed
+---> Package perl-Exporter.noarch 0:5.68-3.el7 will be installed
+---> Package perl-File-Path.noarch 0:2.09-2.el7 will be installed
+---> Package perl-File-Temp.noarch 0:0.23.01-3.el7 will be installed
+---> Package perl-Getopt-Long.noarch 0:2.40-3.el7 will be installed
+--> Processing Dependency: perl(Pod::Usage) >= 1.14 for package: perl-Getopt-Long-2.40-3.el7.noarch
+--> Processing Dependency: perl(Text::ParseWords) for package: perl-Getopt-Long-2.40-3.el7.noarch
+---> Package perl-Git.noarch 0:1.8.3.1-20.el7 will be installed
+---> Package perl-PathTools.x86_64 0:3.40-5.el7 will be installed
+---> Package perl-TermReadKey.x86_64 0:2.30-20.el7 will be installed
+--> Running transaction check
+---> Package perl-Carp.noarch 0:1.26-244.el7 will be installed
+---> Package perl-Filter.x86_64 0:1.49-3.el7 will be installed
+---> Package perl-Pod-Simple.noarch 1:3.28-4.el7 will be installed
+--> Processing Dependency: perl(Pod::Escapes) >= 1.04 for package: 1:perl-Pod-Simple-3.28-4.el7.noarch
+--> Processing Dependency: perl(Encode) for package: 1:perl-Pod-Simple-3.28-4.el7.noarch
+---> Package perl-Pod-Usage.noarch 0:1.63-3.el7 will be installed
+--> Processing Dependency: perl(Pod::Text) >= 3.15 for package: perl-Pod-Usage-1.63-3.el7.noarch
+--> Processing Dependency: perl-Pod-Perldoc for package: perl-Pod-Usage-1.63-3.el7.noarch
+---> Package perl-Scalar-List-Utils.x86_64 0:1.27-248.el7 will be installed
+---> Package perl-Socket.x86_64 0:2.010-4.el7 will be installed
+---> Package perl-Storable.x86_64 0:2.45-3.el7 will be installed
+---> Package perl-Text-ParseWords.noarch 0:3.29-4.el7 will be installed
+---> Package perl-Time-HiRes.x86_64 4:1.9725-3.el7 will be installed
+---> Package perl-Time-Local.noarch 0:1.2300-2.el7 will be installed
+---> Package perl-constant.noarch 0:1.27-2.el7 will be installed
+---> Package perl-libs.x86_64 4:5.16.3-294.el7_6 will be installed
+---> Package perl-macros.x86_64 4:5.16.3-294.el7_6 will be installed
+---> Package perl-threads.x86_64 0:1.87-4.el7 will be installed
+---> Package perl-threads-shared.x86_64 0:1.43-6.el7 will be installed
+--> Running transaction check
+---> Package perl-Encode.x86_64 0:2.51-7.el7 will be installed
+---> Package perl-Pod-Escapes.noarch 1:1.04-294.el7_6 will be installed
+---> Package perl-Pod-Perldoc.noarch 0:3.20-4.el7 will be installed
+--> Processing Dependency: perl(HTTP::Tiny) for package: perl-Pod-Perldoc-3.20-4.el7.noarch
+--> Processing Dependency: perl(parent) for package: perl-Pod-Perldoc-3.20-4.el7.noarch
+---> Package perl-podlators.noarch 0:2.5.1-3.el7 will be installed
+--> Running transaction check
+---> Package perl-HTTP-Tiny.noarch 0:0.033-3.el7 will be installed
+---> Package perl-parent.noarch 1:0.225-244.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================================================================================================
+ Package                                           Arch                              Version                                       Repository                                                   Size
+=====================================================================================================================================================================================================
+Installing:
+ git                                               x86_64                            1.8.3.1-20.el7                                rhui-REGION-rhel-server-releases                            4.4 M
+Installing for dependencies:
+ perl                                              x86_64                            4:5.16.3-294.el7_6                            rhui-REGION-rhel-server-releases                            8.0 M
+ perl-Carp                                         noarch                            1.26-244.el7                                  rhui-REGION-rhel-server-releases                             19 k
+ perl-Encode                                       x86_64                            2.51-7.el7                                    rhui-REGION-rhel-server-releases                            1.5 M
+ perl-Error                                        noarch                            1:0.17020-2.el7                               rhui-REGION-rhel-server-releases                             32 k
+ perl-Exporter                                     noarch                            5.68-3.el7                                    rhui-REGION-rhel-server-releases                             28 k
+ perl-File-Path                                    noarch                            2.09-2.el7                                    rhui-REGION-rhel-server-releases                             27 k
+ perl-File-Temp                                    noarch                            0.23.01-3.el7                                 rhui-REGION-rhel-server-releases                             56 k
+ perl-Filter                                       x86_64                            1.49-3.el7                                    rhui-REGION-rhel-server-releases                             76 k
+ perl-Getopt-Long                                  noarch                            2.40-3.el7                                    rhui-REGION-rhel-server-releases                             56 k
+ perl-Git                                          noarch                            1.8.3.1-20.el7                                rhui-REGION-rhel-server-releases                             55 k
+ perl-HTTP-Tiny                                    noarch                            0.033-3.el7                                   rhui-REGION-rhel-server-releases                             38 k
+ perl-PathTools                                    x86_64                            3.40-5.el7                                    rhui-REGION-rhel-server-releases                             83 k
+ perl-Pod-Escapes                                  noarch                            1:1.04-294.el7_6                              rhui-REGION-rhel-server-releases                             51 k
+ perl-Pod-Perldoc                                  noarch                            3.20-4.el7                                    rhui-REGION-rhel-server-releases                             87 k
+ perl-Pod-Simple                                   noarch                            1:3.28-4.el7                                  rhui-REGION-rhel-server-releases                            216 k
+ perl-Pod-Usage                                    noarch                            1.63-3.el7                                    rhui-REGION-rhel-server-releases                             27 k
+ perl-Scalar-List-Utils                            x86_64                            1.27-248.el7                                  rhui-REGION-rhel-server-releases                             36 k
+ perl-Socket                                       x86_64                            2.010-4.el7                                   rhui-REGION-rhel-server-releases                             49 k
+ perl-Storable                                     x86_64                            2.45-3.el7                                    rhui-REGION-rhel-server-releases                             77 k
+ perl-TermReadKey                                  x86_64                            2.30-20.el7                                   rhui-REGION-rhel-server-releases                             31 k
+ perl-Text-ParseWords                              noarch                            3.29-4.el7                                    rhui-REGION-rhel-server-releases                             14 k
+ perl-Time-HiRes                                   x86_64                            4:1.9725-3.el7                                rhui-REGION-rhel-server-releases                             45 k
+ perl-Time-Local                                   noarch                            1.2300-2.el7                                  rhui-REGION-rhel-server-releases                             24 k
+ perl-constant                                     noarch                            1.27-2.el7                                    rhui-REGION-rhel-server-releases                             19 k
+ perl-libs                                         x86_64                            4:5.16.3-294.el7_6                            rhui-REGION-rhel-server-releases                            688 k
+ perl-macros                                       x86_64                            4:5.16.3-294.el7_6                            rhui-REGION-rhel-server-releases                             44 k
+ perl-parent                                       noarch                            1:0.225-244.el7                               rhui-REGION-rhel-server-releases                             12 k
+ perl-podlators                                    noarch                            2.5.1-3.el7                                   rhui-REGION-rhel-server-releases                            112 k
+ perl-threads                                      x86_64                            1.87-4.el7                                    rhui-REGION-rhel-server-releases                             49 k
+ perl-threads-shared                               x86_64                            1.43-6.el7                                    rhui-REGION-rhel-server-releases                             39 k
+
+Transaction Summary
+=====================================================================================================================================================================================================
+Install  1 Package (+30 Dependent packages)
+
+Total download size: 16 M
+Installed size: 59 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/31): perl-Carp-1.26-244.el7.noarch.rpm                                                                                                                                     |  19 kB  00:00:00
+(2/31): perl-Encode-2.51-7.el7.x86_64.rpm                                                                                                                                     | 1.5 MB  00:00:00
+(3/31): perl-Error-0.17020-2.el7.noarch.rpm                                                                                                                                   |  32 kB  00:00:00
+(4/31): perl-5.16.3-294.el7_6.x86_64.rpm                                                                                                                                      | 8.0 MB  00:00:00
+(5/31): perl-Exporter-5.68-3.el7.noarch.rpm                                                                                                                                   |  28 kB  00:00:00
+(6/31): git-1.8.3.1-20.el7.x86_64.rpm                                                                                                                                         | 4.4 MB  00:00:00
+(7/31): perl-File-Temp-0.23.01-3.el7.noarch.rpm                                                                                                                               |  56 kB  00:00:00
+(8/31): perl-File-Path-2.09-2.el7.noarch.rpm                                                                                                                                  |  27 kB  00:00:00
+(9/31): perl-Filter-1.49-3.el7.x86_64.rpm                                                                                                                                     |  76 kB  00:00:00
+(10/31): perl-Git-1.8.3.1-20.el7.noarch.rpm                                                                                                                                   |  55 kB  00:00:00
+(11/31): perl-Getopt-Long-2.40-3.el7.noarch.rpm                                                                                                                               |  56 kB  00:00:00
+(12/31): perl-HTTP-Tiny-0.033-3.el7.noarch.rpm                                                                                                                                |  38 kB  00:00:00
+(13/31): perl-Pod-Escapes-1.04-294.el7_6.noarch.rpm                                                                                                                           |  51 kB  00:00:00
+(14/31): perl-PathTools-3.40-5.el7.x86_64.rpm                                                                                                                                 |  83 kB  00:00:00
+(15/31): perl-Pod-Perldoc-3.20-4.el7.noarch.rpm                                                                                                                               |  87 kB  00:00:00
+(16/31): perl-Pod-Usage-1.63-3.el7.noarch.rpm                                                                                                                                 |  27 kB  00:00:00
+(17/31): perl-Pod-Simple-3.28-4.el7.noarch.rpm                                                                                                                                | 216 kB  00:00:00
+(18/31): perl-Scalar-List-Utils-1.27-248.el7.x86_64.rpm                                                                                                                       |  36 kB  00:00:00
+(19/31): perl-Storable-2.45-3.el7.x86_64.rpm                                                                                                                                  |  77 kB  00:00:00
+(20/31): perl-Socket-2.010-4.el7.x86_64.rpm                                                                                                                                   |  49 kB  00:00:00
+(21/31): perl-TermReadKey-2.30-20.el7.x86_64.rpm                                                                                                                              |  31 kB  00:00:00
+(22/31): perl-Text-ParseWords-3.29-4.el7.noarch.rpm                                                                                                                           |  14 kB  00:00:00
+(23/31): perl-Time-HiRes-1.9725-3.el7.x86_64.rpm                                                                                                                              |  45 kB  00:00:00
+(24/31): perl-Time-Local-1.2300-2.el7.noarch.rpm                                                                                                                              |  24 kB  00:00:00
+(25/31): perl-constant-1.27-2.el7.noarch.rpm                                                                                                                                  |  19 kB  00:00:00
+(26/31): perl-macros-5.16.3-294.el7_6.x86_64.rpm                                                                                                                              |  44 kB  00:00:00
+(27/31): perl-libs-5.16.3-294.el7_6.x86_64.rpm                                                                                                                                | 688 kB  00:00:00
+(28/31): perl-parent-0.225-244.el7.noarch.rpm                                                                                                                                 |  12 kB  00:00:00
+(29/31): perl-threads-1.87-4.el7.x86_64.rpm                                                                                                                                   |  49 kB  00:00:00
+(30/31): perl-podlators-2.5.1-3.el7.noarch.rpm                                                                                                                                | 112 kB  00:00:00
+(31/31): perl-threads-shared-1.43-6.el7.x86_64.rpm                                                                                                                            |  39 kB  00:00:00
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                 10 MB/s |  16 MB  00:00:01
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : 1:perl-parent-0.225-244.el7.noarch                                                                                                                                               1/31
+  Installing : perl-HTTP-Tiny-0.033-3.el7.noarch                                                                                                                                                2/31
+  Installing : perl-podlators-2.5.1-3.el7.noarch                                                                                                                                                3/31
+  Installing : perl-Pod-Perldoc-3.20-4.el7.noarch                                                                                                                                               4/31
+  Installing : 1:perl-Pod-Escapes-1.04-294.el7_6.noarch                                                                                                                                         5/31
+  Installing : perl-Encode-2.51-7.el7.x86_64                                                                                                                                                    6/31
+  Installing : perl-Text-ParseWords-3.29-4.el7.noarch                                                                                                                                           7/31
+  Installing : perl-Pod-Usage-1.63-3.el7.noarch                                                                                                                                                 8/31
+  Installing : 4:perl-libs-5.16.3-294.el7_6.x86_64                                                                                                                                              9/31
+  Installing : 4:perl-macros-5.16.3-294.el7_6.x86_64                                                                                                                                           10/31
+  Installing : perl-Storable-2.45-3.el7.x86_64                                                                                                                                                 11/31
+  Installing : perl-Exporter-5.68-3.el7.noarch                                                                                                                                                 12/31
+  Installing : perl-constant-1.27-2.el7.noarch                                                                                                                                                 13/31
+  Installing : perl-Time-Local-1.2300-2.el7.noarch                                                                                                                                             14/31
+  Installing : perl-Socket-2.010-4.el7.x86_64                                                                                                                                                  15/31
+  Installing : perl-Carp-1.26-244.el7.noarch                                                                                                                                                   16/31
+  Installing : 4:perl-Time-HiRes-1.9725-3.el7.x86_64                                                                                                                                           17/31
+  Installing : perl-PathTools-3.40-5.el7.x86_64                                                                                                                                                18/31
+  Installing : perl-Scalar-List-Utils-1.27-248.el7.x86_64                                                                                                                                      19/31
+  Installing : perl-File-Temp-0.23.01-3.el7.noarch                                                                                                                                             20/31
+  Installing : perl-File-Path-2.09-2.el7.noarch                                                                                                                                                21/31
+  Installing : perl-threads-shared-1.43-6.el7.x86_64                                                                                                                                           22/31
+  Installing : perl-threads-1.87-4.el7.x86_64                                                                                                                                                  23/31
+  Installing : 1:perl-Pod-Simple-3.28-4.el7.noarch                                                                                                                                             24/31
+  Installing : perl-Filter-1.49-3.el7.x86_64                                                                                                                                                   25/31
+  Installing : perl-Getopt-Long-2.40-3.el7.noarch                                                                                                                                              26/31
+  Installing : 4:perl-5.16.3-294.el7_6.x86_64                                                                                                                                                  27/31
+  Installing : 1:perl-Error-0.17020-2.el7.noarch                                                                                                                                               28/31
+  Installing : perl-TermReadKey-2.30-20.el7.x86_64                                                                                                                                             29/31
+  Installing : perl-Git-1.8.3.1-20.el7.noarch                                                                                                                                                  30/31
+  Installing : git-1.8.3.1-20.el7.x86_64                                                                                                                                                       31/31
+  Verifying  : perl-HTTP-Tiny-0.033-3.el7.noarch                                                                                                                                                1/31
+  Verifying  : perl-threads-shared-1.43-6.el7.x86_64                                                                                                                                            2/31
+  Verifying  : perl-Storable-2.45-3.el7.x86_64                                                                                                                                                  3/31
+  Verifying  : 1:perl-Pod-Escapes-1.04-294.el7_6.noarch                                                                                                                                         4/31
+  Verifying  : perl-Exporter-5.68-3.el7.noarch                                                                                                                                                  5/31
+  Verifying  : perl-constant-1.27-2.el7.noarch                                                                                                                                                  6/31
+  Verifying  : perl-PathTools-3.40-5.el7.x86_64                                                                                                                                                 7/31
+  Verifying  : 1:perl-parent-0.225-244.el7.noarch                                                                                                                                               8/31
+  Verifying  : perl-TermReadKey-2.30-20.el7.x86_64                                                                                                                                              9/31
+  Verifying  : 4:perl-libs-5.16.3-294.el7_6.x86_64                                                                                                                                             10/31
+  Verifying  : perl-File-Temp-0.23.01-3.el7.noarch                                                                                                                                             11/31
+  Verifying  : perl-Git-1.8.3.1-20.el7.noarch                                                                                                                                                  12/31
+  Verifying  : perl-Time-Local-1.2300-2.el7.noarch                                                                                                                                             13/31
+  Verifying  : 4:perl-macros-5.16.3-294.el7_6.x86_64                                                                                                                                           14/31
+  Verifying  : perl-Socket-2.010-4.el7.x86_64                                                                                                                                                  15/31
+  Verifying  : perl-Carp-1.26-244.el7.noarch                                                                                                                                                   16/31
+  Verifying  : 1:perl-Error-0.17020-2.el7.noarch                                                                                                                                               17/31
+  Verifying  : git-1.8.3.1-20.el7.x86_64                                                                                                                                                       18/31
+  Verifying  : 4:perl-Time-HiRes-1.9725-3.el7.x86_64                                                                                                                                           19/31
+  Verifying  : perl-Scalar-List-Utils-1.27-248.el7.x86_64                                                                                                                                      20/31
+  Verifying  : perl-Pod-Usage-1.63-3.el7.noarch                                                                                                                                                21/31
+  Verifying  : perl-Encode-2.51-7.el7.x86_64                                                                                                                                                   22/31
+  Verifying  : perl-Pod-Perldoc-3.20-4.el7.noarch                                                                                                                                              23/31
+  Verifying  : perl-podlators-2.5.1-3.el7.noarch                                                                                                                                               24/31
+  Verifying  : perl-File-Path-2.09-2.el7.noarch                                                                                                                                                25/31
+  Verifying  : perl-threads-1.87-4.el7.x86_64                                                                                                                                                  26/31
+  Verifying  : 1:perl-Pod-Simple-3.28-4.el7.noarch                                                                                                                                             27/31
+  Verifying  : perl-Filter-1.49-3.el7.x86_64                                                                                                                                                   28/31
+  Verifying  : perl-Getopt-Long-2.40-3.el7.noarch                                                                                                                                              29/31
+  Verifying  : perl-Text-ParseWords-3.29-4.el7.noarch                                                                                                                                          30/31
+  Verifying  : 4:perl-5.16.3-294.el7_6.x86_64                                                                                                                                                  31/31
+
+Installed:
+  git.x86_64 0:1.8.3.1-20.el7
+
+Dependency Installed:
+  perl.x86_64 4:5.16.3-294.el7_6                       perl-Carp.noarch 0:1.26-244.el7                 perl-Encode.x86_64 0:2.51-7.el7               perl-Error.noarch 1:0.17020-2.el7
+  perl-Exporter.noarch 0:5.68-3.el7                    perl-File-Path.noarch 0:2.09-2.el7              perl-File-Temp.noarch 0:0.23.01-3.el7         perl-Filter.x86_64 0:1.49-3.el7
+  perl-Getopt-Long.noarch 0:2.40-3.el7                 perl-Git.noarch 0:1.8.3.1-20.el7                perl-HTTP-Tiny.noarch 0:0.033-3.el7           perl-PathTools.x86_64 0:3.40-5.el7
+  perl-Pod-Escapes.noarch 1:1.04-294.el7_6             perl-Pod-Perldoc.noarch 0:3.20-4.el7            perl-Pod-Simple.noarch 1:3.28-4.el7           perl-Pod-Usage.noarch 0:1.63-3.el7
+  perl-Scalar-List-Utils.x86_64 0:1.27-248.el7         perl-Socket.x86_64 0:2.010-4.el7                perl-Storable.x86_64 0:2.45-3.el7             perl-TermReadKey.x86_64 0:2.30-20.el7
+  perl-Text-ParseWords.noarch 0:3.29-4.el7             perl-Time-HiRes.x86_64 4:1.9725-3.el7           perl-Time-Local.noarch 0:1.2300-2.el7         perl-constant.noarch 0:1.27-2.el7
+  perl-libs.x86_64 4:5.16.3-294.el7_6                  perl-macros.x86_64 4:5.16.3-294.el7_6           perl-parent.noarch 1:0.225-244.el7            perl-podlators.noarch 0:2.5.1-3.el7
+  perl-threads.x86_64 0:1.87-4.el7                     perl-threads-shared.x86_64 0:1.43-6.el7
+
+Complete!
+[root@ip-172-31-45-21 git-2.21.0]#
+[root@ip-172-31-45-21 git-2.21.0]#
+[root@ip-172-31-45-21 git-2.21.0]#
+[root@ip-172-31-45-21 git-2.21.0]# git --version
+git version 1.8.3.1
+[root@ip-172-31-45-21 git-2.21.0]#
+[root@ip-172-31-45-21 git-2.21.0]#
+[root@ip-172-31-45-21 git-2.21.0]#
+[root@ip-172-31-45-21 git-2.21.0]#
+[root@ip-172-31-45-21 git-2.21.0]# mkdir -p /home/redhat/training/firstrepo
+[root@ip-172-31-45-21 git-2.21.0]# cd /home/redhat/training/firstrepo
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git init
+Initialized empty Git repository in /home/redhat/training/firstrepo/.git/
+[root@ip-172-31-45-21 firstrepo]# ls -al
+total 0
+drwxr-xr-x. 3 root root  18 Sep  9 09:45 .
+drwxr-xr-x. 3 root root  23 Sep  9 09:45 ..
+drwxr-xr-x. 7 root root 119 Sep  9 09:45 .git
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git add .
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git commit -am "first commit"
+# On branch master
+#
+# Initial commit
+#
+nothing to commit (create/copy files and use "git add" to track)
+[root@ip-172-31-45-21 firstrepo]# git status
+# On branch master
+#
+# Initial commit
+#
+nothing to commit (create/copy files and use "git add" to track)
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git log --online
+fatal: bad default revision 'HEAD'
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+--2019-09-09 09:53:30--  http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+Resolving dl.fedoraproject.org (dl.fedoraproject.org)... 209.132.181.25, 209.132.181.23, 209.132.181.24
+Connecting to dl.fedoraproject.org (dl.fedoraproject.org)|209.132.181.25|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 15080 (15K) [application/x-rpm]
+Saving to: ‘epel-release-latest-7.noarch.rpm’
+
+100%[===========================================================================================================================================================>] 15,080      59.7KB/s   in 0.2s
+
+2019-09-09 09:53:31 (59.7 KB/s) - ‘epel-release-latest-7.noarch.rpm’ saved [15080/15080]
+
+[root@ip-172-31-45-21 firstrepo]# rpm -ivh epel-release-latest-7.noarch.rpm
+Preparing...                          ################################# [100%]
+        package epel-release-7-11.noarch is already installed
+[root@ip-172-31-45-21 firstrepo]# yum list git
+Loaded plugins: amazon-id, rhui-lb, search-disabled-repos
+Installed Packages
+git.x86_64                                                                      1.8.3.1-20.el7                                                                      @rhui-REGION-rhel-server-releases
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git status
+# On branch master
+#
+# Initial commit
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       epel-release-latest-7.noarch.rpm
+nothing added to commit but untracked files present (use "git add" to track)
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git clean
+fatal: clean.requireForce defaults to true and neither -n nor -f given; refusing to clean
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git log
+fatal: bad default revision 'HEAD'
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# wget https://yum.puppet.com/puppet5/puppet5-release-el-7.noarch.rpm
+--2019-09-09 09:58:06--  https://yum.puppet.com/puppet5/puppet5-release-el-7.noarch.rpm
+Resolving yum.puppet.com (yum.puppet.com)... 13.35.227.61, 13.35.227.21, 13.35.227.56, ...
+Connecting to yum.puppet.com (yum.puppet.com)|13.35.227.61|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 7320 (7.1K) [application/x-redhat-package-manager]
+Saving to: ‘puppet5-release-el-7.noarch.rpm’
+
+100%[===========================================================================================================================================================>] 7,320       --.-K/s   in 0s
+
+2019-09-09 09:58:06 (692 MB/s) - ‘puppet5-release-el-7.noarch.rpm’ saved [7320/7320]
+
+[root@ip-172-31-45-21 firstrepo]# rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-el-7.noarch.rpm
+Retrieving https://yum.puppet.com/puppet5/puppet5-release-el-7.noarch.rpm
+warning: /var/tmp/rpm-tmp.kp6DjQ: Header V4 RSA/SHA256 Signature, key ID ef8d349f: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:puppet5-release-5.0.0-4.el7      ################################# [100%]
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# yum list git
+Loaded plugins: amazon-id, rhui-lb, search-disabled-repos
+puppet5                                                                                                                                                                       | 2.5 kB  00:00:00
+puppet5/x86_64/primary_db                                                                                                                                                     | 249 kB  00:00:00
+Installed Packages
+git.x86_64                                                                      1.8.3.1-20.el7                                                                      @rhui-REGION-rhel-server-releases
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# wget
+
+wget: missing URL
+Usage: wget [OPTION]... [URL]...
+
+Try `wget --help' for more options.
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# wget  https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+--2019-09-09 10:02:53--  https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+Resolving dl.fedoraproject.org (dl.fedoraproject.org)... 209.132.181.25, 209.132.181.23, 209.132.181.24
+Connecting to dl.fedoraproject.org (dl.fedoraproject.org)|209.132.181.25|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 15080 (15K) [application/x-rpm]
+Saving to: ‘epel-release-latest-7.noarch.rpm.1’
+
+100%[===========================================================================================================================================================>] 15,080      59.2KB/s   in 0.2s
+
+2019-09-09 10:02:54 (59.2 KB/s) - ‘epel-release-latest-7.noarch.rpm.1’ saved [15080/15080]
+
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# ls -al
+total 40
+drwxr-xr-x. 3 root root   139 Sep  9 10:02 .
+drwxr-xr-x. 3 root root    23 Sep  9 09:45 ..
+-rw-r--r--. 1 root root 15080 Oct  2  2017 epel-release-latest-7.noarch.rpm
+-rw-r--r--. 1 root root 15080 Oct  2  2017 epel-release-latest-7.noarch.rpm.1
+drwxr-xr-x. 7 root root   141 Sep  9 09:54 .git
+-rw-r--r--. 1 root root  7320 May 17 01:41 puppet5-release-el-7.noarch.rpm
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git status
+# On branch master
+#
+# Initial commit
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       epel-release-latest-7.noarch.rpm
+#       epel-release-latest-7.noarch.rpm.1
+#       puppet5-release-el-7.noarch.rpm
+nothing added to commit but untracked files present (use "git add" to track)
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+[root@ip-172-31-45-21 firstrepo]# cd .git
+[root@ip-172-31-45-21 .git]# git add
+fatal: This operation must be run in a work tree
+[root@ip-172-31-45-21 .git]# ls -ltr
+total 16
+drwxr-xr-x. 4 root root  31 Sep  9 09:45 refs
+drwxr-xr-x. 2 root root   6 Sep  9 09:45 branches
+drwxr-xr-x. 2 root root  21 Sep  9 09:45 info
+drwxr-xr-x. 2 root root 242 Sep  9 09:45 hooks
+-rw-r--r--. 1 root root  73 Sep  9 09:45 description
+-rw-r--r--. 1 root root  23 Sep  9 09:45 HEAD
+-rw-r--r--. 1 root root  92 Sep  9 09:45 config
+drwxr-xr-x. 5 root root  40 Sep  9 09:47 objects
+-rw-r--r--. 1 root root  13 Sep  9 09:47 COMMIT_EDITMSG
+[root@ip-172-31-45-21 .git]# git config --global user.name "sraj02"
+[root@ip-172-31-45-21 .git]#
+[root@ip-172-31-45-21 .git]# git config --global user.email rajsaurabh77@gmail.com
+[root@ip-172-31-45-21 .git]# git config --list
+user.name=sraj02
+user.email=rajsaurabh77@gmail.com
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+[root@ip-172-31-45-21 .git]#
+[root@ip-172-31-45-21 .git]# git log
+fatal: bad default revision 'HEAD'
+[root@ip-172-31-45-21 .git]# git commit -m "initial commit"
+fatal: This operation must be run in a work tree
+[root@ip-172-31-45-21 .git]# cd
+[root@ip-172-31-45-21 ~]# git commit -m "initial commit"
+fatal: Not a git repository (or any of the parent directories): .git
+[root@ip-172-31-45-21 ~]# cd -
+/home/redhat/training/firstrepo/.git
+[root@ip-172-31-45-21 .git]# cd ..
+[root@ip-172-31-45-21 firstrepo]# git commit -m "initial commit"
+# On branch master
+#
+# Initial commit
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       epel-release-latest-7.noarch.rpm
+#       epel-release-latest-7.noarch.rpm.1
+#       puppet5-release-el-7.noarch.rpm
+nothing added to commit but untracked files present (use "git add" to track)
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git log
+fatal: bad default revision 'HEAD'
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git commit .
+error: pathspec './' did not match any file(s) known to git.
+[root@ip-172-31-45-21 firstrepo]# git add .
+[root@ip-172-31-45-21 firstrepo]# git log
+fatal: bad default revision 'HEAD'
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# cd .git/
+[root@ip-172-31-45-21 .git]# ls -ltrh
+total 20K
+drwxr-xr-x. 4 root root  31 Sep  9 09:45 refs
+drwxr-xr-x. 2 root root   6 Sep  9 09:45 branches
+drwxr-xr-x. 2 root root  21 Sep  9 09:45 info
+drwxr-xr-x. 2 root root 242 Sep  9 09:45 hooks
+-rw-r--r--. 1 root root  73 Sep  9 09:45 description
+-rw-r--r--. 1 root root  23 Sep  9 09:45 HEAD
+-rw-r--r--. 1 root root  92 Sep  9 09:45 config
+-rw-r--r--. 1 root root  15 Sep  9 10:08 COMMIT_EDITMSG
+drwxr-xr-x. 7 root root  60 Sep  9 10:09 objects
+-rw-r--r--. 1 root root 328 Sep  9 10:09 index
+[root@ip-172-31-45-21 .git]# cd HEAD
+-bash: cd: HEAD: Not a directory
+[root@ip-172-31-45-21 .git]# cat HEAD
+ref: refs/heads/master
+[root@ip-172-31-45-21 .git]# cat COMMIT_EDITMSG
+initial commit
+[root@ip-172-31-45-21 .git]# cd .
+[root@ip-172-31-45-21 .git]# cd ..
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# echo "# firstrepo" >> README.md
+[root@ip-172-31-45-21 firstrepo]# git add README.md
+[root@ip-172-31-45-21 firstrepo]# git commit -m "first commit"
+[master (root-commit) bb7b4b1] first commit
+ 4 files changed, 1 insertion(+)
+ create mode 100644 README.md
+ create mode 100644 epel-release-latest-7.noarch.rpm
+ create mode 100644 epel-release-latest-7.noarch.rpm.1
+ create mode 100644 puppet5-release-el-7.noarch.rpm
+[root@ip-172-31-45-21 firstrepo]# git status
+# On branch master
+nothing to commit, working directory clean
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git log
+commit bb7b4b13982127b87554db2cf1469c9b07256b64
+Author: sraj02 <rajsaurabh77@gmail.com>
+Date:   Mon Sep 9 10:19:55 2019 +0000
+
+    first commit
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git remote add origin https://github.com/sraj02/firstrepo.git
+[root@ip-172-31-45-21 firstrepo]# git push -u origin master
+Username for 'https://github.com': sraj02
+Password for 'https://sraj02@github.com':
+Counting objects: 5, done.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 17.87 KiB | 0 bytes/s, done.
+Total 5 (delta 0), reused 0 (delta 0)
+To https://github.com/sraj02/firstrepo.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git remote add origin https://github.com/rchidana/Kubernetes.git
+fatal: remote origin already exists.
+[root@ip-172-31-45-21 firstrepo]# git remote add kubernate https://github.com/rchidana/Kubernetes.git
+[root@ip-172-31-45-21 firstrepo]# git push -u kubernate master
+Username for 'https://github.com': sraj02
+Password for 'https://sraj02@github.com':
+remote: Permission to rchidana/Kubernetes.git denied to sraj02.
+fatal: unable to access 'https://github.com/rchidana/Kubernetes.git/': The requested URL returned error: 403
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git pull https://github.com/rchidana/Kubernetes.git
+warning: no common commits
+remote: Enumerating objects: 50, done.
+remote: Total 50 (delta 0), reused 0 (delta 0), pack-reused 50
+Unpacking objects: 100% (50/50), done.
+From https://github.com/rchidana/Kubernetes
+ * branch            HEAD       -> FETCH_HEAD
+Merge made by the 'recursive' strategy.
+ Arguments/commands.yaml                              |  13 +++++++
+ Arguments/env.yaml                                   |  20 +++++++++++
+ DaemonSet/ssd-monitor-ds.yaml                        |  18 ++++++++++
+ DaemonSet/ssd-monitor/Dockerfile                     |   2 ++
+ Example1/Dockerfile                                  |   3 ++
+ Example1/app.js                                      |  10 ++++++
+ Example2/mynodeapp-manual-label.yaml                 |  15 ++++++++
+ Example2/mynodeapp-manual-node-selector.yaml         |  17 +++++++++
+ Example2/mynodeapp-manual.yaml                       |  12 +++++++
+ JobResource/Batch-Job/Dockerfile                     |   2 ++
+ JobResource/batch-job.yaml                           |  14 ++++++++
+ JobResource/multi-completion-batch-job-parallel.yaml |  16 +++++++++
+ JobResource/multi-completion-batch-job.yaml          |  15 ++++++++
+ My-Namespace/my-namespace.yaml                       |   4 +++
+ My-Namespace/mynodeapp-manual-my-namespace.yaml      |  13 +++++++
+ Probes/Un-Healthy-Code/Dockerfile                    |   3 ++
+ Probes/Un-Healthy-Code/app.js                        |  18 ++++++++++
+ Probes/mynodeapp-liveness.yaml                       |  13 +++++++
+ ReplicaSet/mynodeapp-rs.yaml                         |  22 ++++++++++++
+ Replication Controller/mynodeapp-rc.yaml             |  18 ++++++++++
+ Service/Ingress/hello.yaml                           |  24 +++++++++++++
+ Service/Ingress/ingress.yaml                         |  18 ++++++++++
+ Service/Ingress/nginx-ingress-config.yaml            | 265 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Service/Ingress/welcome.yaml                         |  24 +++++++++++++
+ Service/mynode-service-check.yaml                    |  12 +++++++
+ Service/mynodeapp-svc.yaml                           |  10 ++++++
+ Service/mynodeapp-with-label.yaml                    |  14 ++++++++
+ Volumes/Persistence/mypvc.yaml                       |  10 ++++++
+ Volumes/Persistence/pv-deploy.yaml                   |  28 +++++++++++++++
+ Volumes/pod-with-volume.yaml                         |  27 ++++++++++++++
+ 30 files changed, 680 insertions(+)
+ create mode 100644 Arguments/commands.yaml
+ create mode 100644 Arguments/env.yaml
+ create mode 100644 DaemonSet/ssd-monitor-ds.yaml
+ create mode 100644 DaemonSet/ssd-monitor/Dockerfile
+ create mode 100644 Example1/Dockerfile
+ create mode 100644 Example1/app.js
+ create mode 100644 Example2/mynodeapp-manual-label.yaml
+ create mode 100644 Example2/mynodeapp-manual-node-selector.yaml
+ create mode 100644 Example2/mynodeapp-manual.yaml
+ create mode 100644 JobResource/Batch-Job/Dockerfile
+ create mode 100644 JobResource/batch-job.yaml
+ create mode 100644 JobResource/multi-completion-batch-job-parallel.yaml
+ create mode 100644 JobResource/multi-completion-batch-job.yaml
+ create mode 100644 My-Namespace/my-namespace.yaml
+ create mode 100644 My-Namespace/mynodeapp-manual-my-namespace.yaml
+ create mode 100644 Probes/Un-Healthy-Code/Dockerfile
+ create mode 100644 Probes/Un-Healthy-Code/app.js
+ create mode 100644 Probes/mynodeapp-liveness.yaml
+ create mode 100644 ReplicaSet/mynodeapp-rs.yaml
+ create mode 100644 Replication Controller/mynodeapp-rc.yaml
+ create mode 100644 Service/Ingress/hello.yaml
+ create mode 100644 Service/Ingress/ingress.yaml
+ create mode 100644 Service/Ingress/nginx-ingress-config.yaml
+ create mode 100644 Service/Ingress/welcome.yaml
+ create mode 100644 Service/mynode-service-check.yaml
+ create mode 100644 Service/mynodeapp-svc.yaml
+ create mode 100644 Service/mynodeapp-with-label.yaml
+ create mode 100644 Volumes/Persistence/mypvc.yaml
+ create mode 100644 Volumes/Persistence/pv-deploy.yaml
+ create mode 100644 Volumes/pod-with-volume.yaml
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# cd
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]# ssh-keygen -t rsa -C rajsaurabh77@gmail.com
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):
+/root/.ssh/id_rsa already exists.
+Overwrite (y/n)? y
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Saving key "/root/.ssh/id_rsa" failed: passphrase is too short (minimum five characters)
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]# cd .ssh/
+[root@ip-172-31-45-21 .ssh]# ls -ltr
+total 16
+-rw-------. 1 root root  545 Jul 28 10:29 authorized_keys
+-rw-r--r--. 1 root root  430 Jul 28 10:47 id_rsa.pub
+-rw-------. 1 root root 1675 Jul 28 10:47 id_rsa
+-rw-r--r--. 1 root root  220 Jul 28 10:47 known_hosts
+[root@ip-172-31-45-21 .ssh]# cat id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDIuhu+BgixBttWOnlzp5VYr6FH0jNOWS6kNksUsJI45Rf+P1i340/1J8sat5nlBbZCTWHMaX1GGOLpjEMS42PyDzK/6hg1Sb5zaiKIv4X/Eh7VJhM22uoXdxbWqOGmR3EQodR6qSfalyrIArmiwlnF8evhAqs5uBMd+AOHaz2bYWCyxOFgq3xNmc+LJxQyEAFCxXzVnRvKy3oViEA0pxiWvgY7rfPhhGnC0GG3XEYdljhR+pv8veTyfKzp114JZV9rHOWXPi9o2pI9Z0VsTLo5JWktQdoBzyd+9ihtdNIaaif1Mdidseqlgrm/CWIiez6Rumt1g/Bk/Hni1DnfHSE9 root@ip-172-31-45-21.ap-south-1.compute.internal
+[root@ip-172-31-45-21 .ssh]#
+[root@ip-172-31-45-21 .ssh]#
+[root@ip-172-31-45-21 .ssh]#
+[root@ip-172-31-45-21 .ssh]#
+[root@ip-172-31-45-21 .ssh]#
+[root@ip-172-31-45-21 .ssh]#
+[root@ip-172-31-45-21 .ssh]#
+[root@ip-172-31-45-21 .ssh]#
+[root@ip-172-31-45-21 .ssh]# ssh -T git@github.com
+The authenticity of host 'github.com (13.234.210.38)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+RSA key fingerprint is MD5:16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,13.234.210.38' (RSA) to the list of known hosts.
+Hi sraj02! You've successfully authenticated, but GitHub does not provide shell access.
+[root@ip-172-31-45-21 .ssh]#
+[root@ip-172-31-45-21 .ssh]#
+[root@ip-172-31-45-21 .ssh]# exit
+logout
+[ec2-user@ip-172-31-45-21 ~]$ sudo su -
+Last login: Mon Sep  9 09:41:18 UTC 2019 on pts/0
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]# ssh -T git@github.com
+Hi sraj02! You've successfully authenticated, but GitHub does not provide shell access.
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]# cd .ssh/
+[root@ip-172-31-45-21 .ssh]# rm -rf id_rsa.pub
+[root@ip-172-31-45-21 .ssh]# cd
+[root@ip-172-31-45-21 ~]# ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):
+/root/.ssh/id_rsa already exists.
+Overwrite (y/n)? y
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Saving key "/root/.ssh/id_rsa" failed: passphrase is too short (minimum five characters)
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]# ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):
+/root/.ssh/id_rsa already exists.
+Overwrite (y/n)? y
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:k+Jc7uspeVWBkSU8aGGobb0Xd5ZG0pC2pw/pHOIj2eU root@ip-172-31-45-21.ap-south-1.compute.internal
+The key's randomart image is:
++---[RSA 2048]----+
+|       .o+o=o+   |
+|      ..o =.= o  |
+|     o o   o = . |
+|    . o ... + *  |
+|     .. S. + B   |
+|     o +..+ *    |
+|      o..* * +   |
+|      o.+.+ E .  |
+|       +=o .     |
++----[SHA256]-----+
+[root@ip-172-31-45-21 ~]# cat .ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqTiGWHMqRwpO7KCS4nBfhQ3Cf0aI4MwBWD/6Lk3IO63vwS9/B61+L1l/zaOzqpnFhhf4mzJhYLlFPikPuwmGA8CPWS5CwCfo5BwCR/2CgsIYadC7+RlsoipLJHvrk5eS2nDd4zIEj/XPTDMPMBF5xXPvDLUt2oJaEmR0KPlhx3qsd+9wTdeR+ONc0p92YfemHVwiKB0BledITOOD1j5u3GuVeRHn75xLHlkTsIBtiT5N8m9szSXvm1rtQa4cVHqyTiQ2MA/UphVCbeueMcUp8cSVKwm9DUI7tHilzO7ZOctnOgCwXyZXITkUaHr6HlEXBOvL13k2pfV0hmmNeiYDz root@ip-172-31-45-21.ap-south-1.compute.internal
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]# ssh -T git@github.com
+Warning: Permanently added the RSA host key for IP address '13.234.176.102' to the list of known hosts.
+Enter passphrase for key '/root/.ssh/id_rsa':
+Hi sraj02! You've successfully authenticated, but GitHub does not provide shell access.
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]#
+[root@ip-172-31-45-21 ~]# cd /home/redhat/training/firstrepo/
+[root@ip-172-31-45-21 firstrepo]# got clone https://github.com/rchidana/Kubernetes.git
+-bash: got: command not found
+[root@ip-172-31-45-21 firstrepo]# git clone https://github.com/rchidana/Kubernetes.git
+Cloning into 'Kubernetes'...
+remote: Enumerating objects: 50, done.
+remote: Total 50 (delta 0), reused 0 (delta 0), pack-reused 50
+Unpacking objects: 100% (50/50), done.
+[root@ip-172-31-45-21 firstrepo]# ls -ltr
+total 44
+-rw-r--r--.  1 root root 15080 Oct  2  2017 epel-release-latest-7.noarch.rpm.1
+-rw-r--r--.  1 root root 15080 Oct  2  2017 epel-release-latest-7.noarch.rpm
+-rw-r--r--.  1 root root  7320 May 17 01:41 puppet5-release-el-7.noarch.rpm
+-rw-r--r--.  1 root root    12 Sep  9 10:19 README.md
+drwxr-xr-x.  2 root root    38 Sep  9 10:38 Example1
+drwxr-xr-x.  3 root root    52 Sep  9 10:38 DaemonSet
+drwxr-xr-x.  2 root root    43 Sep  9 10:38 Arguments
+drwxr-xr-x.  2 root root    73 Sep  9 10:38 My-Namespace
+drwxr-xr-x.  3 root root   132 Sep  9 10:38 JobResource
+drwxr-xr-x.  2 root root   113 Sep  9 10:38 Example2
+drwxr-xr-x.  2 root root    31 Sep  9 10:38 Replication Controller
+drwxr-xr-x.  2 root root    31 Sep  9 10:38 ReplicaSet
+drwxr-xr-x.  3 root root    60 Sep  9 10:38 Probes
+drwxr-xr-x.  3 root root    53 Sep  9 10:38 Volumes
+drwxr-xr-x.  3 root root   113 Sep  9 10:38 Service
+drwxr-xr-x. 14 root root   215 Sep  9 11:00 Kubernetes
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]#
+[root@ip-172-31-45-21 firstrepo]# git clone git@github.com:sraj02/secondtestcase.git
+Cloning into 'secondtestcase'...
+Enter passphrase for key '/root/.ssh/id_rsa':
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (3/3), done.
+[root@ip-172-31-45-21 firstrepo]#
+
